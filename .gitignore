@@ -1,0 +1,11 @@
+.env
+venv/
+.venv/
+*.pkl
+*.csv
+mage.log
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+*.pyc
+
