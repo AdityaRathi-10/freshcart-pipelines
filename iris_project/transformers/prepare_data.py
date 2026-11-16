@@ -19,7 +19,7 @@ def transform(df: pd.DataFrame, *args, **kwargs) -> pd.DataFrame:
     if df.empty:
         raise ValueError("Iris input cannot be empty")
     result = df.copy()
-    result["split"] = ["train" if index % 5 else "test" for index in range(len(result))]
+    result["split"] = ["train" if index % 4 else "test" for index in range(len(result))]
     return result
 
 
