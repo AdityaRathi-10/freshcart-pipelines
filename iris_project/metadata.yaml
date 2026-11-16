@@ -1,0 +1,38 @@
+blocks:
+  - uuid: load_iris
+    type: data_loader
+    upstream_blocks: []
+    downstream_blocks: [quality_check]
+    configuration:
+      file_path: data_loaders/load_iris.py
+  - uuid: quality_check
+    type: transformer
+    upstream_blocks: [load_iris]
+    downstream_blocks: [prepare_data]
+    configuration:
+      file_path: transformers/quality_check.py
+  - uuid: prepare_data
+    type: transformer
+    upstream_blocks: [quality_check]
+    downstream_blocks: [train_model]
+    configuration:
+      file_path: transformers/prepare_data.py
+  - uuid: train_model
+    type: transformer
+    upstream_blocks: [prepare_data]
+    downstream_blocks: [save_results, evaluate_model]
+    configuration:
+      file_path: transformers/train_model.py
+  - uuid: save_results
+    type: data_exporter
+    upstream_blocks: [train_model]
+    downstream_blocks: []
+    configuration:
+      file_path: data_exporters/save_results.py
+  - uuid: evaluate_model
+    type: transformer
+    upstream_blocks: [train_model]
+    downstream_blocks: []
+    configuration:
+      file_path: transformers/evaluate_model.py
+
